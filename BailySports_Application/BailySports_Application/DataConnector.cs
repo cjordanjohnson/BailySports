@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Configuration;
 
 namespace BailySports_Application
 {
@@ -16,7 +17,7 @@ namespace BailySports_Application
         public DataConnector ()
         {
             con = new OleDbConnection();
-            con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\BailySports\\BaileySports_Data.accdb";
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["BailySports_Application.Properties.Settings.BaileySports_DataConnectionString"].ConnectionString;
             cmd = new OleDbCommand();
         }
 
@@ -33,7 +34,9 @@ namespace BailySports_Application
             while (reader.Read())
             {//www.csharp-console-example.com
                 counter++;
-                Console.WriteLine(reader[0] + "-" + reader[1] + " " + reader[2]);
+                //Console.WriteLine(reader[0] + "-" + reader[1] + " " + reader[2]);
+                string test = reader[0].ToString();
+                string test2 = reader[1].ToString();
             }
             con.Close();
         }
