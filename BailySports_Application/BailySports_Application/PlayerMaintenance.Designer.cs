@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.bailySportsData1 = new BailySports_Application.BailySportsData();
-            this.button1 = new System.Windows.Forms.Button();
             this.dgvPlayers = new System.Windows.Forms.DataGridView();
             this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playersTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.PlayersTableAdapter();
@@ -53,16 +52,6 @@
             // 
             this.bailySportsData1.DataSetName = "BailySportsData";
             this.bailySportsData1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(33, 273);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 37);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dgvPlayers
             // 
@@ -155,6 +144,7 @@
             this.Update.HeaderText = "Update";
             this.Update.Name = "Update";
             this.Update.Text = "Update";
+            this.Update.UseColumnTextForButtonValue = true;
             // 
             // PlayerMaintenance
             // 
@@ -162,7 +152,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1437, 450);
             this.Controls.Add(this.dgvPlayers);
-            this.Controls.Add(this.button1);
             this.Name = "PlayerMaintenance";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.PlayerMaintenance_Load);
@@ -176,7 +165,6 @@
         #endregion
 
         private BailySportsData bailySportsData1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvPlayers;
         private System.Windows.Forms.BindingSource playersBindingSource;
         private BailySportsDataTableAdapters.PlayersTableAdapter playersTableAdapter;

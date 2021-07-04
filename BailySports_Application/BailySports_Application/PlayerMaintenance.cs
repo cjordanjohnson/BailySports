@@ -16,26 +16,21 @@ namespace BailySports_Application
     {
         DataConnector dc;
 
-        OleDbCommand command;
-        OleDbDataAdapter da;
-        private BindingSource bindingSource = null;
-        private OleDbCommandBuilder oleCommandBuilder = null;
-        DataTable dataTable = new DataTable();
         public PlayerMaintenance()
         {
             InitializeComponent();
             dc = new DataConnector();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            dgvPlayers.EndEdit(); //very important step
-            da.Update(dataTable);
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    //dgvPlayers.EndEdit(); //very important step
+        //    //da.Update(dataTable);
 
-            MessageBox.Show("Updated");
-            DataBind();
+        //    //MessageBox.Show("Updated");
+        //    //DataBind();
 
-        }
+        //}
 
         private void PlayerMaintenance_Load(object sender, EventArgs e)
         {
@@ -47,32 +42,7 @@ namespace BailySports_Application
 
         private void DataBind()
         {
-            dgvPlayers.DataSource = null;
-            dataTable.Clear();
-
-            //String connectionString = MainWindow.GetConnectionString(); //use your connection string please
-            String queryString1 = "SELECT * FROM Players;"; // Use your table please
-
-            OleDbConnection connection = dc.getConnection();
-            
-            connection.Open();
-            OleDbCommand command = connection.CreateCommand();
-            command.CommandText = queryString1;
-            try
-            {
-                da = new OleDbDataAdapter(queryString1, connection);
-                oleCommandBuilder = new OleDbCommandBuilder(da);
-                da.Fill(dataTable);
-                dataTable.TableName = "Players";
-                bindingSource = new BindingSource { DataSource = dataTable };
-                dgvPlayers.DataSource = bindingSource;
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            this.playersTableAdapter.Fill(this.bailySportsData1.Players);
 
         }
 
@@ -83,12 +53,9 @@ namespace BailySports_Application
         {
             if (dgvPlayers.CurrentRow.Cells["Update"].ColumnIndex == e.ColumnIndex)
             {
-                dgvPlayers.EndEdit(); //very important step
-                da.Update(dataTable);
-                
-                MessageBox.Show("Updated");
+                updatePlayer();
                 DataBind();
-                //updatePlayer();
+
             }
           //  else if (dgvPlayers.CurrentRow.Cells["Delete"].ColumnIndex == e.ColumnIndex)
             {
@@ -116,19 +83,24 @@ namespace BailySports_Application
 
                 if (playerID == -1) //insert
                 {
-                    string sqlCmd = "INSERT INTO Players (PlayerID, FirstName, LastName, EmailAddress, ClientDate, BirthDate, Arm, HeightInches, Weight) " +
-                        "VALUES (" + playerID + ", '" + firstName + "' , '" + lastName + "' , '" + email + "', '" + clientDate.ToString() + "', '" +
+                    string sqlCmd = "INSERT INTO Players (FirstName, LastName, ClientDate, BirthDate, Arm, HeightInches, Weight) " +
+                        "VALUES ('" + firstName + "' , '" + lastName + "', '" + clientDate.ToString() + "', '" +
                         birthDate.ToString() + "' , '" + arm + "', " + height + ", " + weight + ");";
 
                     dc.runSQL(sqlCmd);
                 }
                 else
                 {
-                    string sqlCmd = "UPDATE Players SET FirstName = '" + firstName + "', LastName = '" + lastName + "', email = '" + email + //"', " +
-                        //"BirthDate = '" + birthDate.ToString() + 
-                        "', Arm = '" + arm + "', Height = " + height + ", Weight = " + weight +
+                    string sqlCmd = "UPDATE Players SET FirstName = '" + firstName + "', LastName = '" + lastName + "', " +
+                        //"email = '" + email + "', " +
+                       // "email = @param, " +
+                        "BirthDate = '" + birthDate.ToString() + "', " +
+                        "Arm = '" + arm + "' " + 
+                        ", HeightInches = " + height +  ", Weight = " + weight +
                         " WHERE PlayerID = " + playerID.ToString() + ";";
+
                     dc.runSQL(sqlCmd);
+
                 }
             }
         }
