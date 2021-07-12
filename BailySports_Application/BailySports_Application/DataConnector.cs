@@ -25,7 +25,7 @@ namespace BailySports_Application
             sqlConn = new OleDbConnection();
             sqlConn.ConnectionString = ConfigurationManager.ConnectionStrings["BailySports_Application.Properties.Settings.BaileySports_DataConnectionString"].ConnectionString;
             cmd = new OleDbCommand();
-
+            sqlConn.Open();
         }
 
         public OleDbConnection getConnection()

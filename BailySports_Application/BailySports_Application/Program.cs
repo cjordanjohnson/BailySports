@@ -16,7 +16,7 @@ namespace BailySports_Application
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PlayerMaintenance());
+            Application.Run(new Menu());
         }
     }
 }
