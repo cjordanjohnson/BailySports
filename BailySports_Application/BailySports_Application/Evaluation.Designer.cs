@@ -37,29 +37,32 @@
             this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playersTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.PlayersTableAdapter();
             this.dgvFunctionalMovementScores = new System.Windows.Forms.DataGridView();
+            this.functionalMovementsQueryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.functionalMovementScoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bailySportsData1 = new BailySports_Application.BailySportsData();
             this.tbEvaluationID = new System.Windows.Forms.TextBox();
             this.functionalMovementScoresTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.FunctionalMovementScoresTableAdapter();
             this.button1 = new System.Windows.Forms.Button();
-            this.functionalMovementsQueryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.functionalMovementsQueryTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.FunctionalMovementsQueryTableAdapter();
             this.FMScoreID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EvaluationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FunctionalMovement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestMovement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RawScoreSingle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RawScoreLeft = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RawScoreRight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinalScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorrectiveExcersize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
             this.SingleScore = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tbFMTotal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bailySportsData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunctionalMovementScores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.functionalMovementsQueryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionalMovementScoresBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bailySportsData1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.functionalMovementsQueryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ddEvaluationType
@@ -109,24 +112,36 @@
             // 
             // dgvFunctionalMovementScores
             // 
+            this.dgvFunctionalMovementScores.AllowUserToAddRows = false;
+            this.dgvFunctionalMovementScores.AllowUserToDeleteRows = false;
             this.dgvFunctionalMovementScores.AutoGenerateColumns = false;
             this.dgvFunctionalMovementScores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFunctionalMovementScores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FMScoreID,
             this.EvaluationID,
             this.FunctionalMovement,
+            this.TestMovement,
             this.RawScoreSingle,
             this.RawScoreLeft,
             this.RawScoreRight,
             this.FinalScore,
             this.CorrectiveExcersize,
+            this.Update,
             this.SingleScore});
             this.dgvFunctionalMovementScores.DataSource = this.functionalMovementsQueryBindingSource;
             this.dgvFunctionalMovementScores.Location = new System.Drawing.Point(12, 139);
+            this.dgvFunctionalMovementScores.MultiSelect = false;
             this.dgvFunctionalMovementScores.Name = "dgvFunctionalMovementScores";
             this.dgvFunctionalMovementScores.RowTemplate.Height = 24;
             this.dgvFunctionalMovementScores.Size = new System.Drawing.Size(1360, 123);
             this.dgvFunctionalMovementScores.TabIndex = 2;
+            this.dgvFunctionalMovementScores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFunctionalMovementScores_CellContentClick);
+            this.dgvFunctionalMovementScores.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_SelectionChanged);
+            // 
+            // functionalMovementsQueryBindingSource
+            // 
+            this.functionalMovementsQueryBindingSource.DataMember = "FunctionalMovementsQuery";
+            this.functionalMovementsQueryBindingSource.DataSource = this.bailySportsData;
             // 
             // functionalMovementScoresBindingSource
             // 
@@ -160,11 +175,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // functionalMovementsQueryBindingSource
-            // 
-            this.functionalMovementsQueryBindingSource.DataMember = "FunctionalMovementsQuery";
-            this.functionalMovementsQueryBindingSource.DataSource = this.bailySportsData;
-            // 
             // functionalMovementsQueryTableAdapter
             // 
             this.functionalMovementsQueryTableAdapter.ClearBeforeFill = true;
@@ -174,60 +184,96 @@
             this.FMScoreID.DataPropertyName = "FMScoreID";
             this.FMScoreID.HeaderText = "FMScoreID";
             this.FMScoreID.Name = "FMScoreID";
+            this.FMScoreID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FMScoreID.Visible = false;
             // 
             // EvaluationID
             // 
             this.EvaluationID.DataPropertyName = "EvaluationID";
             this.EvaluationID.HeaderText = "EvaluationID";
             this.EvaluationID.Name = "EvaluationID";
+            this.EvaluationID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.EvaluationID.Visible = false;
             // 
             // FunctionalMovement
             // 
             this.FunctionalMovement.DataPropertyName = "FunctionalMovement";
             this.FunctionalMovement.HeaderText = "FunctionalMovement";
             this.FunctionalMovement.Name = "FunctionalMovement";
+            this.FunctionalMovement.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FunctionalMovement.Visible = false;
+            // 
+            // TestMovement
+            // 
+            this.TestMovement.DataPropertyName = "TestMovement";
+            this.TestMovement.HeaderText = "Test Movement";
+            this.TestMovement.Name = "TestMovement";
+            this.TestMovement.ReadOnly = true;
+            this.TestMovement.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // RawScoreSingle
             // 
             this.RawScoreSingle.DataPropertyName = "RawScoreSingle";
-            this.RawScoreSingle.HeaderText = "RawScoreSingle";
+            this.RawScoreSingle.HeaderText = "Raw Single";
             this.RawScoreSingle.Name = "RawScoreSingle";
+            this.RawScoreSingle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // RawScoreLeft
             // 
             this.RawScoreLeft.DataPropertyName = "RawScoreLeft";
-            this.RawScoreLeft.HeaderText = "RawScoreLeft";
+            this.RawScoreLeft.HeaderText = "Raw Left";
             this.RawScoreLeft.Name = "RawScoreLeft";
+            this.RawScoreLeft.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // RawScoreRight
             // 
             this.RawScoreRight.DataPropertyName = "RawScoreRight";
-            this.RawScoreRight.HeaderText = "RawScoreRight";
+            this.RawScoreRight.HeaderText = "Raw Right";
             this.RawScoreRight.Name = "RawScoreRight";
+            this.RawScoreRight.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // FinalScore
             // 
             this.FinalScore.DataPropertyName = "FinalScore";
-            this.FinalScore.HeaderText = "FinalScore";
+            this.FinalScore.HeaderText = "Final Score";
             this.FinalScore.Name = "FinalScore";
+            this.FinalScore.ReadOnly = true;
+            this.FinalScore.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CorrectiveExcersize
             // 
             this.CorrectiveExcersize.DataPropertyName = "CorrectiveExcersize";
             this.CorrectiveExcersize.HeaderText = "CorrectiveExcersize";
             this.CorrectiveExcersize.Name = "CorrectiveExcersize";
+            this.CorrectiveExcersize.ReadOnly = true;
+            this.CorrectiveExcersize.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Update
+            // 
+            this.Update.HeaderText = "Update";
+            this.Update.Name = "Update";
+            this.Update.Text = "Update";
             // 
             // SingleScore
             // 
             this.SingleScore.DataPropertyName = "SingleScore";
             this.SingleScore.HeaderText = "SingleScore";
             this.SingleScore.Name = "SingleScore";
+            this.SingleScore.Visible = false;
+            // 
+            // tbFMTotal
+            // 
+            this.tbFMTotal.Location = new System.Drawing.Point(561, 267);
+            this.tbFMTotal.Name = "tbFMTotal";
+            this.tbFMTotal.Size = new System.Drawing.Size(166, 22);
+            this.tbFMTotal.TabIndex = 5;
             // 
             // Evaluation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1425, 523);
+            this.Controls.Add(this.tbFMTotal);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbEvaluationID);
             this.Controls.Add(this.dgvFunctionalMovementScores);
@@ -240,9 +286,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bailySportsData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunctionalMovementScores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.functionalMovementsQueryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.functionalMovementScoresBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bailySportsData1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.functionalMovementsQueryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,11 +314,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FMScoreID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EvaluationID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FunctionalMovement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestMovement;
         private System.Windows.Forms.DataGridViewTextBoxColumn RawScoreSingle;
         private System.Windows.Forms.DataGridViewTextBoxColumn RawScoreLeft;
         private System.Windows.Forms.DataGridViewTextBoxColumn RawScoreRight;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinalScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn CorrectiveExcersize;
+        private System.Windows.Forms.DataGridViewButtonColumn Update;
         private System.Windows.Forms.DataGridViewCheckBoxColumn SingleScore;
+        private System.Windows.Forms.TextBox tbFMTotal;
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 using System.Configuration;
+using System.Windows.Forms;
+
 
 namespace BailySports_Application
 {
@@ -43,11 +45,36 @@ namespace BailySports_Application
             OleDbCommand cmd = new OleDbCommand(command, sqlConn);
 
             // int reader = cmd.ExecuteNonQuery();
-            sqlConn.Open();
+            //sqlConn.Open();
             retval = cmd.ExecuteNonQuery();
             sqlConn.Close();
             return retval;
 
+        }
+
+
+        public void gridCellUpdate(string tableName, DataGridViewCell dvc, int keyValue, string keyName, string updFieldName, string modby)
+        {
+            string sqlCommand = "UPDATE " + tableName + " SET " + updFieldName + " = ";
+
+            if (dvc.Value == null || dvc.Value.ToString().Length == 0)
+            {
+                sqlCommand = sqlCommand + "NULL";
+            }
+            else if (dvc.ValueType == typeof(int) || dvc.ValueType == typeof(decimal) || dvc.ValueType == typeof(long))
+            {
+                sqlCommand = sqlCommand + ((int)dvc.Value).ToString();
+            }
+            else
+            {
+                sqlCommand = sqlCommand + "'" + dvc.Value.ToString() + "'";
+            }
+
+           // sqlCommand = sqlCommand + ", ModifiedBy = '" + modby + "'";
+
+            sqlCommand = sqlCommand + " WHERE " + keyName + " = " + keyValue.ToString() + ";";
+            Initialize();
+            runSQL(sqlCommand);
         }
 
         public DataTable getDataTable(string command)
