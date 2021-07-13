@@ -37,13 +37,6 @@
             this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playersTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.PlayersTableAdapter();
             this.dgvFunctionalMovementScores = new System.Windows.Forms.DataGridView();
-            this.functionalMovementsQueryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.functionalMovementScoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bailySportsData1 = new BailySports_Application.BailySportsData();
-            this.tbEvaluationID = new System.Windows.Forms.TextBox();
-            this.functionalMovementScoresTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.FunctionalMovementScoresTableAdapter();
-            this.button1 = new System.Windows.Forms.Button();
-            this.functionalMovementsQueryTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.FunctionalMovementsQueryTableAdapter();
             this.FMScoreID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EvaluationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FunctionalMovement = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +48,13 @@
             this.CorrectiveExcersize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
             this.SingleScore = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.functionalMovementsQueryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.functionalMovementScoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bailySportsData1 = new BailySports_Application.BailySportsData();
+            this.tbEvaluationID = new System.Windows.Forms.TextBox();
+            this.functionalMovementScoresTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.FunctionalMovementScoresTableAdapter();
+            this.button1 = new System.Windows.Forms.Button();
+            this.functionalMovementsQueryTableAdapter = new BailySports_Application.BailySportsDataTableAdapters.FunctionalMovementsQueryTableAdapter();
             this.tbFMTotal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bailySportsData)).BeginInit();
@@ -133,51 +133,10 @@
             this.dgvFunctionalMovementScores.MultiSelect = false;
             this.dgvFunctionalMovementScores.Name = "dgvFunctionalMovementScores";
             this.dgvFunctionalMovementScores.RowTemplate.Height = 24;
-            this.dgvFunctionalMovementScores.Size = new System.Drawing.Size(1360, 123);
+            this.dgvFunctionalMovementScores.Size = new System.Drawing.Size(1360, 344);
             this.dgvFunctionalMovementScores.TabIndex = 2;
             this.dgvFunctionalMovementScores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFunctionalMovementScores_CellContentClick);
             this.dgvFunctionalMovementScores.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_SelectionChanged);
-            // 
-            // functionalMovementsQueryBindingSource
-            // 
-            this.functionalMovementsQueryBindingSource.DataMember = "FunctionalMovementsQuery";
-            this.functionalMovementsQueryBindingSource.DataSource = this.bailySportsData;
-            // 
-            // functionalMovementScoresBindingSource
-            // 
-            this.functionalMovementScoresBindingSource.DataMember = "FunctionalMovementScores";
-            this.functionalMovementScoresBindingSource.DataSource = this.bailySportsData1;
-            // 
-            // bailySportsData1
-            // 
-            this.bailySportsData1.DataSetName = "BailySportsData";
-            this.bailySportsData1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tbEvaluationID
-            // 
-            this.tbEvaluationID.Location = new System.Drawing.Point(448, 24);
-            this.tbEvaluationID.Name = "tbEvaluationID";
-            this.tbEvaluationID.Size = new System.Drawing.Size(93, 22);
-            this.tbEvaluationID.TabIndex = 3;
-            this.tbEvaluationID.Text = "-1";
-            // 
-            // functionalMovementScoresTableAdapter
-            // 
-            this.functionalMovementScoresTableAdapter.ClearBeforeFill = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(693, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 52);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // functionalMovementsQueryTableAdapter
-            // 
-            this.functionalMovementsQueryTableAdapter.ClearBeforeFill = true;
             // 
             // FMScoreID
             // 
@@ -261,9 +220,50 @@
             this.SingleScore.Name = "SingleScore";
             this.SingleScore.Visible = false;
             // 
+            // functionalMovementsQueryBindingSource
+            // 
+            this.functionalMovementsQueryBindingSource.DataMember = "FunctionalMovementsQuery";
+            this.functionalMovementsQueryBindingSource.DataSource = this.bailySportsData;
+            // 
+            // functionalMovementScoresBindingSource
+            // 
+            this.functionalMovementScoresBindingSource.DataMember = "FunctionalMovementScores";
+            this.functionalMovementScoresBindingSource.DataSource = this.bailySportsData1;
+            // 
+            // bailySportsData1
+            // 
+            this.bailySportsData1.DataSetName = "BailySportsData";
+            this.bailySportsData1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tbEvaluationID
+            // 
+            this.tbEvaluationID.Location = new System.Drawing.Point(448, 24);
+            this.tbEvaluationID.Name = "tbEvaluationID";
+            this.tbEvaluationID.Size = new System.Drawing.Size(93, 22);
+            this.tbEvaluationID.TabIndex = 3;
+            this.tbEvaluationID.Text = "-1";
+            // 
+            // functionalMovementScoresTableAdapter
+            // 
+            this.functionalMovementScoresTableAdapter.ClearBeforeFill = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(693, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 52);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // functionalMovementsQueryTableAdapter
+            // 
+            this.functionalMovementsQueryTableAdapter.ClearBeforeFill = true;
+            // 
             // tbFMTotal
             // 
-            this.tbFMTotal.Location = new System.Drawing.Point(561, 267);
+            this.tbFMTotal.Location = new System.Drawing.Point(1206, 489);
             this.tbFMTotal.Name = "tbFMTotal";
             this.tbFMTotal.Size = new System.Drawing.Size(166, 22);
             this.tbFMTotal.TabIndex = 5;
